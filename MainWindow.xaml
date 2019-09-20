@@ -1,0 +1,63 @@
+﻿<Window x:Class="RPGMVTools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPGMVTools"
+        mc:Ignorable="d"
+        Title="James' RPG MV Tools" Height="450" Width="600">
+    <StackPanel>
+
+        <!--Project Folder-->
+        <Button x:Name="ProjectFolderButton" Click="ProjectFolderButton_Click" Content="Choose Project Folder" Grid.Column="0" Margin="10,0,288,0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="ProjectPath:" Grid.Column="0" Margin="0,0,90,0"/>
+            <TextBlock x:Name="ProjectFolderPath" Grid.ColumnSpan="2" Margin="73,0,0,0"/>
+
+        </Grid>
+        <!-- Backup 1 Folder-->
+        <Button x:Name="BackupFolderOneButton" Click="BackupFolderOneButton_Click" Content="Choose Backup Folder 1" Grid.Column="0" Margin="10,0,288,0" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Backup 1 Path:" Grid.Column="0" Margin="0,0,90,0"/>
+            <TextBlock x:Name="BackupFolderOnePath" Grid.ColumnSpan="2" Margin="83,0,0,0"/>
+
+        </Grid>
+
+        <!--Backup 2 Folder-->
+        <Button x:Name="BackupFolderTwoButton" Click="BackupFolderTwoButton_Click" Content="Choose Backup Folder 2" Grid.Column="1" Margin="10,0,288,0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Backup 2 Path:" Grid.Column="0" Margin="0,0,90,0"/>
+            <TextBlock x:Name="BackupFolderTwoPath" Grid.ColumnSpan="2" Margin="83,0,0,0"/>
+
+        </Grid>
+
+        <!--Backup Project-->
+        <Button Content="Backup Project" Background="Aquamarine" x:Name="BackupProjectButton" Click="BackupProjectButton_Click" Margin="10,0" />
+
+        <!--RXGC Folder-->
+        <Button Content="Choose RXGCFolderPath" x:Name="RXGCFoldeButton" Click="RXGCFoldeButton_Click" Margin="10,10,288,10" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text ="RXGCFolderPath:" Grid.Column="0" Margin="0,0,90,0"/>
+            <TextBlock x:Name="RXGCFolderPath" Grid.ColumnSpan="2" Margin="94,0,0,0" />
+        </Grid>
+        <Button Content= "Custom Graphics -> Project" Background="Aquamarine" x:Name= "MoveGraphics" Click="MoveGraphics_Click" Margin="10,0" />
+
+    </StackPanel>
+</Window>
