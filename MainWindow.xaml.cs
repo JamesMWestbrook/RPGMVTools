@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
+using System.IO.Compression;
+
 using System.Linq;
 using System.Windows;
 using WinForms = System.Windows.Forms;
@@ -106,9 +109,27 @@ namespace RPGMVTools
             DirectoryInfo ProjectFolder = new DirectoryInfo(projectPath);
 
             FileInfo[] Project = ProjectFolder.GetFiles();
+            FileInfo[] OpenBackupOne = BackupOneDir.GetFiles();
+            FileInfo[] OpenBackupTwo = BackupTwoDir.GetFiles();
 
             //DirectoryCopy(projectPath, BackupOnePath, true);
+            string BackupZipOne = BackupOnePath + @"\OtraReturnGame.zip";
+            string BackupZipTwo = BackupTwoPath + @"\OtraReturnGame.zip";
+            DeleteZip(BackupZipOne);
+            DeleteZip(BackupZipTwo);
+
+            ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\OtraReturnGame.zip");
+            ZipFile.CreateFromDirectory(projectPath, BackupTwoPath + @"\OtraReturnGame.zip");
         }
+
+        private void DeleteZip(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
 
         private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
@@ -165,9 +186,6 @@ namespace RPGMVTools
             Properties.Settings.Default.Save();
         }
 
-
-
-
         private void MoveGraphics_Click(object sender, RoutedEventArgs e)
         {
 
@@ -200,16 +218,24 @@ namespace RPGMVTools
         {
             if (file.Name.Contains("Character.png"))
             {
-                string DestinationFile = ProjectFolder + @"\img\Characters\" + file.Name;
+                string DestinationFile = ProjectFolder + @"\ReturnToOtraGame\img\Characters\" + file.Name;
                 if (File.Exists(DestinationFile)) File.Delete(DestinationFile);
                 file.MoveTo(DestinationFile);
             }
-            else if (file.Name.Contains(".png"))
+            else if (file.Name.Contains("Face.png"))
             {
-                string DestinationFile = ProjectFolder + @"\img\Faces\" + file.Name;
+                string DestinationFile = ProjectFolder + @"\ReturnToOtraGame\img\Faces\" + file.Name;
                 if (File.Exists(DestinationFile)) File.Delete(DestinationFile);
                 file.MoveTo(DestinationFile);
             }
         }
+
+        private void ZipProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            ZipFile.CreateFromDirectory(projectPath, @"C:\Users\james\Documents\Output\result.zip");
+            //ZipFile.ExtractToDirectory(@"C:\Users\james\Documents\Output\result.zip", @"C:\Users\james\Documents\Output");
+        }
     }
+
+
 }

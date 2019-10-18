@@ -1,0 +1,15 @@
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\bin\Release\RPGMVTools.exe.config
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\bin\Release\RPGMVTools.exe
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\bin\Release\RPGMVTools.pdb
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.csprojAssemblyReference.cache
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\MainWindow.g.cs
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\App.g.cs
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools_MarkupCompile.cache
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools_MarkupCompile.lref
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\MainWindow.baml
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.g.resources
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.Properties.Resources.resources
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.csproj.GenerateResource.cache
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.csproj.CoreCompileInputs.cache
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.exe
+C:\Users\james\Documents\VS2019\C#\RPGMVTools\obj\Release\RPGMVTools.pdb
