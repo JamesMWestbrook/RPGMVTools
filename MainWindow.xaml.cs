@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.IO.Compression;
@@ -53,7 +54,11 @@ namespace RPGMVTools
             {
                 projectPath = dialogue.SelectedPath;
             }
-
+            if (projectPath == "Cancel")
+            {
+                projectPath = "";
+            }
+            
             ProjectFolderPath.Text = projectPath;
             Properties.Settings.Default.StoredProjectPath = projectPath;
 
@@ -71,6 +76,10 @@ namespace RPGMVTools
             if (result == WinForms.DialogResult.OK)
             {
                 BackupOnePath = dialogue.SelectedPath;
+            }
+            if (BackupOnePath == "Cancel")
+            {
+                BackupOnePath = "";
             }
             BackupFolderOnePath.Text = BackupOnePath;
             Properties.Settings.Default.StoredBackupOnePath = BackupOnePath;
@@ -91,6 +100,10 @@ namespace RPGMVTools
             {
                 BackupTwoPath = dialogue.SelectedPath;
             }
+            if (BackupTwoPath == "Cancel")
+            {
+                BackupTwoPath = "";
+            }
             BackupFolderTwoPath.Text = BackupTwoPath;
             Properties.Settings.Default.StoredBackupTwoPath = BackupTwoPath;
 
@@ -100,26 +113,41 @@ namespace RPGMVTools
 
         private void BackupProjectButton_Click(object sender, RoutedEventArgs e)
         {
+            if (projectPath == "") return;
             System.Diagnostics.Process.Start(projectPath);
-            System.Diagnostics.Process.Start(BackupOnePath);
-            System.Diagnostics.Process.Start(BackupTwoPath);
 
-            DirectoryInfo BackupOneDir = new DirectoryInfo(BackupOnePath);
-            DirectoryInfo BackupTwoDir = new DirectoryInfo(BackupTwoPath);
+            if (BackupOnePath != "")
+            {
+                if (BackupOnePath != "") System.Diagnostics.Process.Start(BackupOnePath);
+                DirectoryInfo BackupOneDir = new DirectoryInfo(BackupOnePath);
+                FileInfo[] OpenBackupOne = BackupOneDir.GetFiles();
+
+            }
+            if (BackupTwoPath != "")
+            {
+                if (BackupTwoPath != "") System.Diagnostics.Process.Start(BackupTwoPath);
+                DirectoryInfo BackupTwoDir = new DirectoryInfo(BackupTwoPath);
+                FileInfo[] OpenBackupTwo = BackupTwoDir.GetFiles();
+
+            }
             DirectoryInfo ProjectFolder = new DirectoryInfo(projectPath);
 
             FileInfo[] Project = ProjectFolder.GetFiles();
-            FileInfo[] OpenBackupOne = BackupOneDir.GetFiles();
-            FileInfo[] OpenBackupTwo = BackupTwoDir.GetFiles();
 
             //DirectoryCopy(projectPath, BackupOnePath, true);
             string BackupZipOne = BackupOnePath + @"\OtraReturnGame.zip";
             string BackupZipTwo = BackupTwoPath + @"\OtraReturnGame.zip";
-            DeleteZip(BackupZipOne);
-            DeleteZip(BackupZipTwo);
+            if (BackupZipOne != "")
+            {
+                DeleteZip(BackupZipOne);
+                ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\OtraReturnGame.zip");
 
-            ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\OtraReturnGame.zip");
-            ZipFile.CreateFromDirectory(projectPath, BackupTwoPath + @"\OtraReturnGame.zip");
+            }
+            if (BackupZipTwo != "")
+            {
+                DeleteZip(BackupZipTwo);
+                ZipFile.CreateFromDirectory(projectPath, BackupTwoPath + @"\OtraReturnGame.zip");
+            }
         }
 
         private void DeleteZip(string path)
