@@ -17,6 +17,7 @@ namespace RPGMVTools
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string projectName;
         public static string projectPath;
         public static string BackupTwoPath;
         public static string BackupOnePath;
@@ -27,6 +28,9 @@ namespace RPGMVTools
         public MainWindow()
         {
             InitializeComponent();
+
+            projectName = Properties.Settings.Default.ProjectName;
+            ProjectName.Text = projectName;
 
             projectPath = Properties.Settings.Default.StoredProjectPath;
             ProjectFolderPath.Text = projectPath;
@@ -41,7 +45,6 @@ namespace RPGMVTools
             RXGCFolderPath.Text = RXGCPath;
 
         }
-
 
 
         private void ProjectFolderButton_Click(object sender, RoutedEventArgs e)
@@ -135,18 +138,19 @@ namespace RPGMVTools
             FileInfo[] Project = ProjectFolder.GetFiles();
 
             //DirectoryCopy(projectPath, BackupOnePath, true);
-            string BackupZipOne = BackupOnePath + @"\OtraReturnGame.zip";
-            string BackupZipTwo = BackupTwoPath + @"\OtraReturnGame.zip";
+            string BackupZipOne = Path.Combine(BackupOnePath, ProjectName.Text + ".zip");
+            string BackupZipTwo = BackupTwoPath + @"\" + ProjectName + ".zip";
             if (BackupZipOne != "")
             {
                 DeleteZip(BackupZipOne);
-                ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\OtraReturnGame.zip");
+            //    ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\" + ProjectName + ".zip");
+                ZipFile.CreateFromDirectory(projectPath,Path.Combine(BackupOnePath,ProjectName.Text+ ".zip"));
 
             }
             if (BackupZipTwo != "")
             {
                 DeleteZip(BackupZipTwo);
-                ZipFile.CreateFromDirectory(projectPath, BackupTwoPath + @"\OtraReturnGame.zip");
+                ZipFile.CreateFromDirectory(projectPath, Path.Combine(BackupTwoPath, ProjectName.Text + ".zip"));
             }
         }
 
@@ -262,6 +266,12 @@ namespace RPGMVTools
         {
             ZipFile.CreateFromDirectory(projectPath, @"C:\Users\james\Documents\Output\result.zip");
             //ZipFile.ExtractToDirectory(@"C:\Users\james\Documents\Output\result.zip", @"C:\Users\james\Documents\Output");
+        }
+
+        private void NameSave_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.ProjectName = ProjectName.Text;
+            Properties.Settings.Default.Save();
         }
     }
 
