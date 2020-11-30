@@ -139,19 +139,21 @@ namespace RPGMVTools
 
             //DirectoryCopy(projectPath, BackupOnePath, true);
             string BackupZipOne = Path.Combine(BackupOnePath, ProjectName.Text + ".zip");
-            string BackupZipTwo = BackupTwoPath + @"\" + ProjectName + ".zip";
+            string BackupZipTwo = Path.Combine(BackupTwoPath, ProjectName.Text + ".zip");
             if (BackupZipOne != "")
             {
                 DeleteZip(BackupZipOne);
             //    ZipFile.CreateFromDirectory(projectPath, BackupOnePath + @"\" + ProjectName + ".zip");
-                ZipFile.CreateFromDirectory(projectPath,Path.Combine(BackupOnePath,ProjectName.Text+ ".zip"));
+                
 
             }
+            ZipFile.CreateFromDirectory(projectPath, Path.Combine(BackupOnePath, ProjectName.Text + ".zip"));
             if (BackupZipTwo != "")
             {
                 DeleteZip(BackupZipTwo);
-                ZipFile.CreateFromDirectory(projectPath, Path.Combine(BackupTwoPath, ProjectName.Text + ".zip"));
             }
+            ZipFile.CreateFromDirectory(projectPath, Path.Combine(BackupTwoPath, ProjectName.Text + ".zip"));
+
         }
 
         private void DeleteZip(string path)
